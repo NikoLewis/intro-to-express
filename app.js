@@ -2,10 +2,15 @@ const { response } = require("express");
 const { request } = require("express");
 const express = require("express");
 const req = require("express/lib/request");
-const app = express();
 
+//Configuration
+const app = express();
+const supertest = require('supertest');
+
+
+//Routes
 app.get("/", (request, response) => {
-    response.send("I love express");
+    response.status(200).send('Hello,world!')
 });
 
 app.get("/universe", (request, response)=> {
@@ -79,11 +84,9 @@ app.get("/magic8",(request, response)=>{
 
 
     let magic8Answer = magic8Responses[Math.floor(Math.random()* magic8Responses.length)];
-
-
-      response.send(`<h1>${magic8Answer}`);
+      response.send(`<h1>${magic8Answer}</h1>`);
 })
 
-app.listen(3003, () =>{
-    console.log("Listening for requests on port 3003");
-});
+
+//Exports
+module.exports = app;
